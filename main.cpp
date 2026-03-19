@@ -6,7 +6,10 @@
 u_int8_t heap[100];
 
 
-
+struct blockHeader{
+  blockHeader *next;
+  int size;
+};
 
 
 int main(){
