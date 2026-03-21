@@ -3,19 +3,23 @@
 #include <stdint.h>
 
 
-u_int8_t heap[100];
-
-
 struct blockHeader{
   blockHeader *next;
-  int size;
+  size_t size;
   bool empty = false;
 };
 
+alignas(blockHeader)  u_int8_t heap[100];
+
 
 int main(){
-  blockHeader *start = new blockHeader();
-  start->size = 100-sizeof(blockHeader);
-  heap[0] = reinterpret_cast<u_int8_t>(start);
+  int offset = 0;
+  blockHeader *start = reinterpret_cast<blockHeader *>(&heap[offset]);
+  start->empty = true;
+  start->size = sizeof(heap) - sizeof(*start);
+  offset += start->size;
+
+  std::cout << sizeof(*start) << " " << alignof(*start) << std::endl;
+  
   return 0;
 }
