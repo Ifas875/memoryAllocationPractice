@@ -4,6 +4,7 @@
 
 
 struct blockHeader{
+  blockHeader *previous = nullptr;
   blockHeader *next = nullptr;
   size_t size;
   bool empty = false;
@@ -37,7 +38,10 @@ blockHeader * myMalloc(size_t required){
 
 
 void myFree(blockHeader *target){
-  return;
+  blockHeader *subject = start;
+  while(subject != nullptr){
+    break;
+  }
 }
 
 
