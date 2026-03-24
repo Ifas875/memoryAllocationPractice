@@ -23,7 +23,7 @@ blockHeader * myMalloc(size_t required){
       return subject;
     }
     else{
-      subject = subject->next;
+      subject = subject->next; 
     }
   }
 
