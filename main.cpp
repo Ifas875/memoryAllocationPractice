@@ -27,7 +27,7 @@ blockHeader * myMalloc(size_t required){
     }
   }
 
-  // // Scenario if none of the available blocks matched the requirements
+  // // Scenario if none of the available block s matched the requirements
   // Need to redo entire malloc
   // // Condensing free blocks
   // blockHeader *subject = start;
