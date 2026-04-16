@@ -10,7 +10,7 @@ struct blockHeader{
   bool empty = false;
 };
 
-alignas(blockHeader)  u_int8_t heap[100];
+alignas(blockHeader)  u_int8_t heap[300];
 blockHeader *start = nullptr;
 
 
@@ -47,11 +47,11 @@ void myFree(blockHeader *target){
 
 
 int main(){
-  int offset = 0;
-  start = reinterpret_cast<blockHeader *>(&heap[offset]);
+  start = reinterpret_cast<blockHeader *>(&heap);
   start->empty = true;
-  start->size = sizeof(heap) - sizeof(*start);
-  offset += start->size;
+  start->size = sizeof(heap) - sizeof(blockHeader);
+  start->next = nullptr;
+  start->previous = nullptr;
 
   std::cout << sizeof(*start) << " " << alignof(*start) << std::endl;
   
