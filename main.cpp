@@ -10,31 +10,20 @@ struct blockHeader{
   bool empty = false;
 };
 
-alignas(blockHeader)  u_int8_t heap[300];
+alignas(blockHeader)  u_int8_t heap[500];
 blockHeader *start = nullptr;
 
 
 blockHeader * myMalloc(size_t required){
-  bool status = false;
-  // Searching for available block of memory
+  //Start from the beginning and loop forwards
   blockHeader *subject = start;
+
   while(subject != nullptr){
-    if(subject->size >= required){
-      return subject;
-    }
-    else{
-      subject = subject->next; 
+    // First scenario: FInding a suitable empty block of the right size
+    if(subject->empty && subject->size >= required){
+      
     }
   }
-
-  // // Scenario if none of the available block s matched the requirements
-  // Need to redo entire malloc
-  // // Condensing free blocks
-  // blockHeader *subject = start; 
-  // while(subject != nullptr){
-    
-  // } 
-  return nullptr; 
 }
 
 
@@ -47,7 +36,7 @@ void myFree(blockHeader *target){
 
 
 int main(){
-  start = reinterpret_cast<blockHeader *>(&heap);
+  start = reinterpret_cast<blockHeader *>(heap);
   start->empty = true;
   start->size = sizeof(heap) - sizeof(blockHeader);
   start->next = nullptr;
