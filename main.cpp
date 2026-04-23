@@ -21,8 +21,8 @@ blockHeader * myMalloc(size_t required){
   while(subject != nullptr){
     // First scenario: FInding a suitable empty block of the right size
     if(subject->empty && subject->size >= required){
-      
-    }
+
+    } 
   }
 }
 
